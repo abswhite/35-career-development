@@ -1,9 +1,14 @@
 'use strict';
 
-let BST = require('./lib/BSTNode.js');
-let bst = new BST(30);
-bst.appendChild(4);
-bst.appendChild(110);
-bst.appendChild(15);
-bst.appendChild(78);
-console.log('bst', bst);
+const HashTable = require('./lib/hash-table.js');
+
+let hashTable = new HashTable(30);
+
+hashTable.hashKey('hello');
+console.log('hashKey prototype', hashTable);
+hashTable.set('hello', 'val');
+console.log('set prototype', hashTable);
+hashTable.get('hello');
+console.log('get prototype', hashTable);
+hashTable.remove('hello');
+console.log('remove prototype', hashTable);
