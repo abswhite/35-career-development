@@ -5,35 +5,10 @@ const DBL = require('./dbl-linked-list.js');
 const HashTable = module.exports = function(size=8192) {
   this.size = size
   this.buckets = [...Array(this.size)]
+  for (let i = 0; i < this.buckets.length; i++) {
+    this.buckets[i] = new DBL();
+  }
 }
-
-// .hash(key) converts a string into a number that will index your buckets
-// .set(key, value) stores a value in the hashed keys bucket
-// .get(key) looks in the hashed keys bucket and returns the value of the node containing the key, or null if not found
-// .remove(key) removes the dll node node containing the key
-
-// buckets: [
-//   DBL{
-//     this.head: Node{
-//       this.next: Node{},
-//       this.prev: null
-//     },
-//     this.tail: Node{
-//       this.next: null,
-//       this.prev: Node{}
-//     }
-//   },
-//   DBL{
-//     this.head: Node{
-//       this.next: Node{},
-//       this.prev: null
-//     },
-//     this.tail: Node{
-//       this.next: null,
-//       this.prev: Node{}
-//     }
-//   }
-// ]
 
 HashTable.prototype.hashKey = function(key) {
   if(!key) throw new Error('key required for hash to function... derp')
@@ -43,8 +18,8 @@ HashTable.prototype.hashKey = function(key) {
   return hash
 }
 
-HashTable.prototype.set = function(key, value) {
-  this.buckets[this.hashKey(key)] = value
+HashTable.prototype.set = function(key, dbl) {
+  this.buckets[this.hashKey(key)] = dbl
 }
 
 HashTable.prototype.get = function(key) {
