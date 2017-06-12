@@ -1,4 +1,3 @@
-
 'use strict'
 
 const Node = function(val, next=null, prev=null) {
@@ -13,9 +12,6 @@ const DLL = module.exports = function() {
   this.length = 0
 }
 
-// prev and next (<->) pointers from each Node
-// (TAIL)  <-[]<->[]<->[]-> (HEAD)
-// (prepend)                (append)
 
 DLL.prototype.append = function(val) {
   if(!val) throw new Error('Please provide a value')
@@ -29,7 +25,7 @@ DLL.prototype.append = function(val) {
 }
 
 DLL.prototype.prepend = function(val) {
-  if(!val) throw new Error('must provide value')
+  if(!val) throw new Error('Please provide a value')
   if(!this.tail) return this.tail = this.head = new Node(val)
 
   this.tail.prev = new Node(val)
@@ -40,8 +36,8 @@ DLL.prototype.prepend = function(val) {
 }
 
 DLL.prototype.remove = function(val) {
-  if(!val) throw new Error('must provide value')
-  if(!this.tail) throw new Error('the list is empty')
+  if(!val) throw new Error('Please provide a value')
+  if(!this.tail) throw new Error('The list is empty')
 
   // NOTE: Implement this method. :-)
 
